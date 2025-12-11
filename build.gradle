@@ -32,7 +32,7 @@ sonar {
   properties {
     property "sonar.projectKey", "JTR220_spring-boot-bloc3"
     property "sonar.organization", "jtr220"
-	property "sonar.host.url", "https://sonarcloud.io"
+	property "sonar.host.url", "https://sonarcloud.io" //test
 
   }
 }
