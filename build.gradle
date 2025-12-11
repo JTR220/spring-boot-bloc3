@@ -31,7 +31,7 @@ allprojects {
 sonar {
   properties {
     property "sonar.projectKey", "JTR220_spring-boot-bloc3"
-    property "sonar.organization", "jtr220"
+    property "sonar.organization", "jtr220" // test
 	property "sonar.host.url", "https://sonarcloud.io" //test
 
   }
