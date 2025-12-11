@@ -1,36 +1,51 @@
-name: SonarQube
+name: SonarCloud Analysis
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
-    name: Build and analyze
+    name: Build and Analyze
     runs-on: ubuntu-latest
     steps:
+      # 1. Récupère le code
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0  # IMPORTANT : Shallow clones doivent être désactivés pour une meilleure analyse Sonar
+
+      # 2. Installe Java (Version 17 pour Spring Boot 3)
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: 17
-          distribution: 'zulu' # Alternative distribution options are available
-      - name: Cache SonarQube packages
+          distribution: 'temurin'
+
+      # 3. Cache pour SonarCloud (ton code)
+      - name: Cache SonarCloud packages
         uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
+      # 4. Cache pour Gradle (ton code)
       - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      - name: Build and analyze
+
+      # 5. REND LE WRAPPER EXÉCUTABLE (Étape critique souvent oubliée)
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      # 6. Lance le Build et l'analyse Sonar
+      - name: Build and Analyze
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Fourni par GitHub
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Ton secret créé précédemment
         run: ./gradlew build sonar --info
