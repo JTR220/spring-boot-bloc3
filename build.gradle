@@ -16,6 +16,8 @@
 
 plugins {
 	id "base"
+	id "org.sonarqube" version "7.2.0.6526"
+
 }
 
 description = "Spring Boot Build"
@@ -24,6 +26,13 @@ defaultTasks 'build'
 
 allprojects {
 	group = "org.springframework.boot"
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "JTR220_spring-boot-bloc3"
+    property "sonar.organization", "jtr220"
+  }
 }
 
 subprojects {
