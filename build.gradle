@@ -55,3 +55,11 @@ subprojects {
 		resolutionStrategy.cacheChangingModulesFor 0, "minutes"
 	}
 }
+allprojects {
+    tasks.withType(Javadoc).configureEach {
+        // On supprime l'option "--no-fonts" si elle est présente
+        options.addStringOption("-no-fonts", null) 
+        // OU BIEN, on force une configuration propre standard :
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+}
