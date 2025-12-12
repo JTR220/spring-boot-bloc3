@@ -43,11 +43,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew build sonar --info \
+          ./gradlew --no-daemon build sonar --info \
             -x javadoc \
             -x antora \
             -x antoraNpmInstall \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.organization=jtr220 \
             -Dsonar.projectKey=JTR220_spring-boot-bloc3 \
-            -Dsonar.token=$SONAR_TOKEN
+            -Dsonar.token=$SONAR_TOKEN \
+            -Dsonar.inclusions="**/src/main/**" \
+            -Dsonar.exclusions="**/.github/**,**/documentation/**,**/antora/**,**/build/**,**/.gradle/**,**/buildSrc/**,**/build-logic/**,**/build-plugin/**,**/buildpack/**" \
+            -Dsonar.coverage.exclusions="**/src/test/**,**/src/it/**,**/integration-test/**,**/smoke-test/**,**/system-test/**,**/test-support/**"
