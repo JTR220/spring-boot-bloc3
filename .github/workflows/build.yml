@@ -52,5 +52,5 @@ jobs:
             -Dsonar.projectKey=JTR220_spring-boot-bloc3 \
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.inclusions="**/src/main/**/*.java,**/src/main/**/*.kt,**/src/main/**/*.groovy" \
-            -Dsonar.exclusions="**/.github/**,**/documentation/**,**/antora/**,**/*.adoc,**/build/**,**/.gradle/**,buildSrc/**,build-logic/**,build-plugin/**,buildpack/**,**/smoke-test/**,**/integration-test/**,**/system-test/**,**/test-support/**,**/src/test/**" \
+            -Dsonar.exclusions="**/.github/**,**/documentation/**,**/antora/**,**/*.adoc,**/build/**,**/.gradle/**,buildSrc/**,build-logic/**,build-plugin/**,buildpack/**,**/smoke-test/**,**/integration-test/**,**/system-test/**,**/test-support/**,**/src/test/**,**/test/**,**/*Test.java,**/*Tests.java,**/*IT.java,**/*ITCase.java,**/*IntegrationTest.java,**/*SmokeTest.java" \
             -Dsonar.coverage.exclusions="**/src/test/**,**/src/it/**,**/integration-test/**,**/smoke-test/**,**/system-test/**,**/test-support/**"
