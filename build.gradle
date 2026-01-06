@@ -1,6 +1,6 @@
 plugins {
     id "base"
-    id "org.sonarqube" version "5.1.0.4882"
+    id "org.sonarqube" version "4.4.1.3373"
     id "jacoco"
 }
 
@@ -8,7 +8,9 @@ description = "Spring Boot Build"
 
 allprojects {
     group = "org.springframework.boot"
+    
     repositories {
+        gradlePluginPortal() 
         mavenCentral()
         spring.mavenRepositories()
     }
@@ -23,9 +25,9 @@ sonar {
 }
 
 subprojects {
-    // On applique les plugins de base nécessaires à l'analyse
     apply plugin: 'java'
     apply plugin: 'jacoco'
+    apply plugin: "org.springframework.boot.conventions"
 
     jacoco {
         toolVersion = "0.8.12"
@@ -33,13 +35,14 @@ subprojects {
 
     jacocoTestReport {
         reports {
-            xml.required = true // Indispensable pour SonarCloud
+            xml.required = true
+            html.required = true
         }
     }
 
-    // SOLUTION AU BUG : On ne configure la dépendance que si la tâche existe
     plugins.withType(org.sonarqube.gradle.SonarQubePlugin) {
         tasks.named('sonar').configure {
+            // L'analyse attend systématiquement le rapport de test
             dependsOn tasks.named('jacocoTestReport')
         }
     }
