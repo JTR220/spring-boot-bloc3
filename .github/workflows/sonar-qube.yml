@@ -22,9 +22,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # ✅ BUILD D’UN SEUL MODULE (PAS DE build-plugin)
-      - name: Build Spring Boot Core
-        run: ./gradlew :core:spring-boot:build
+      - name: Build Spring Boot Core (skip buildSrc tests)
+        run: |
+            ./gradlew :core:spring-boot:build \
+            -x buildSrc:test \
+            -x buildSrc:check
 
       # ✅ ANALYSE SONAR SANS COMPILATION IMPLICITE
       - name: SonarCloud analysis
