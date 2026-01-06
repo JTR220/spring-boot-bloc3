@@ -23,7 +23,7 @@ description = "Spring Boot Dependencies"
 
 bom {
 	upgrade {
-		policy = "same-minor-version"
+		policy = "same-major-version"
 		gitHub {
 			issueLabels = ["type: dependency-upgrade"]
 		}
@@ -72,7 +72,7 @@ bom {
 			releaseNotes("https://activemq.apache.org/components/artemis/download/release-notes-{version}")
 		}
 	}
-	library("AspectJ", "1.9.25") {
+	library("AspectJ", "1.9.25.1") {
 		group("org.aspectj") {
 			modules = [
 				"aspectjrt",
@@ -376,7 +376,7 @@ bom {
 			javadoc("elasticsearch-java", version -> "https://javadoc.io/doc/co.elastic.clients/elasticsearch-java/%s/index.html".formatted(version), "co.elastic.clients.elasticsearch", "co.elastic.clients.transport")
 		}
 	}
-	library("Flyway", "11.14.1") {
+	library("Flyway", "11.19.1") {
 		group("org.flywaydb") {
 			modules = [
 				"flyway-commandline",
@@ -560,7 +560,7 @@ bom {
 			releaseNotes("https://github.com/hazelcast/hazelcast/releases/tag/v{version}")
 		}
 	}
-	library("Hibernate", "7.1.11.Final") {
+	library("Hibernate", "7.2.0.Final") {
 		group("org.hibernate.orm") {
 			modules = [
 				"hibernate-agroal",
@@ -1076,7 +1076,7 @@ bom {
 			releaseNotes("https://github.com/jOOQ/jOOQ/releases/tag/version-{version}")
 		}
 	}
-	library("Json Path", "2.9.0") {
+	library("Json Path", "2.10.0") {
 		group("com.jayway.jsonpath") {
 			modules = [
 				"json-path",
@@ -1275,7 +1275,7 @@ bom {
 			releaseNotes("https://github.com/liquibase/liquibase/releases/tag/v{version}")
 		}
 	}
-	library("Log4j2", "2.25.2") {
+	library("Log4j2", "2.25.3") {
 		prohibit {
 			contains "-alpha"
 			contains "-beta"
@@ -1292,7 +1292,7 @@ bom {
 			releaseNotes("https://github.com/apache/logging-log4j2/releases/tag/rel%2F{version}")
 		}
 	}
-	library("Logback", "1.5.21") {
+	library("Logback", "1.5.22") {
 		group("ch.qos.logback") {
 			modules = [
 				"logback-classic",
@@ -1315,7 +1315,7 @@ bom {
 			javadoc("https://projectlombok.org/api")
 		}
 	}
-	library("MariaDB", "3.5.6") {
+	library("MariaDB", "3.5.7") {
 		group("org.mariadb.jdbc") {
 			modules = [
 				"mariadb-java-client"
@@ -1577,7 +1577,7 @@ bom {
 			releaseNotes("https://github.com/mockito/mockito/releases/tag/v{version}")
 		}
 	}
-	library("MongoDB", "5.6.1") {
+	library("MongoDB", "5.6.2") {
 		alignWith {
 			version {
 				of "org.mongodb:mongodb-driver-core"
@@ -1671,7 +1671,7 @@ bom {
 			releaseNotes("https://github.com/neo4j/neo4j-java-driver/releases/tag/{version}")
 		}
 	}
-	library("Netty", "4.2.7.Final") {
+	library("Netty", "4.2.9.Final") {
 		prohibit {
 			contains ".Alpha"
 			contains ".Beta"
@@ -1752,7 +1752,7 @@ bom {
 			releaseNotes("https://github.com/oracle/oracle-r2dbc/releases/tag/{version}")
 		}
 	}
-	library("Pooled JMS", "3.1.7") {
+	library("Pooled JMS", "3.1.8") {
 		group("org.messaginghub") {
 			modules = [
 				"pooled-jms"
@@ -2189,8 +2189,8 @@ bom {
 				"spring-boot-starter-jsonb-test",
 				"spring-boot-starter-kafka",
 				"spring-boot-starter-kafka-test",
-				"spring-boot-starter-kotlin-serialization-json",
-				"spring-boot-starter-kotlin-serialization-json-test",
+				"spring-boot-starter-kotlinx-serialization-json",
+				"spring-boot-starter-kotlinx-serialization-json-test",
 				"spring-boot-starter-ldap",
 				"spring-boot-starter-ldap-test",
 				"spring-boot-starter-liquibase",
@@ -2368,7 +2368,7 @@ bom {
 			]
 		}
 	}
-	library("Spring AMQP", "4.0.1-SNAPSHOT") {
+	library("Spring AMQP", "4.0.1") {
 		considerSnapshots()
 		group("org.springframework.amqp") {
 			bom("spring-amqp-bom")
@@ -2383,7 +2383,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-amqp/releases/tag/v{version}")
 		}
 	}
-	library("Spring Batch", "6.0.1-SNAPSHOT") {
+	library("Spring Batch", "6.0.1") {
 		considerSnapshots()
 		group("org.springframework.batch") {
 			bom("spring-batch-bom")
@@ -2398,7 +2398,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-batch/releases/tag/v{version}")
 		}
 	}
-	library("Spring Data Bom", "2025.1.1-SNAPSHOT") {
+	library("Spring Data Bom", "2025.1.1") {
 		considerSnapshots()
 		calendarName = "Spring Data Release"
 		group("org.springframework.data") {
@@ -2428,7 +2428,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-framework/releases/tag/v{version}")
 		}
 	}
-	library("Spring GraphQL", "2.0.1-SNAPSHOT") {
+	library("Spring GraphQL", "2.0.1") {
 		considerSnapshots()
 		group("org.springframework.graphql") {
 			modules = [
@@ -2446,7 +2446,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-graphql/releases/tag/v{version}")
 		}
 	}
-	library("Spring HATEOAS", "3.0.1-SNAPSHOT") {
+	library("Spring HATEOAS", "3.0.1") {
 		considerSnapshots()
 		group("org.springframework.hateoas") {
 			modules = [
@@ -2463,7 +2463,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-hateoas/releases/tag/{version}")
 		}
 	}
-	library("Spring Integration", "7.0.1-SNAPSHOT") {
+	library("Spring Integration", "7.0.1") {
 		considerSnapshots()
 		group("org.springframework.integration") {
 			bom("spring-integration-bom")
@@ -2478,7 +2478,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-integration/releases/tag/v{version}")
 		}
 	}
-	library("Spring Kafka", "4.0.1-SNAPSHOT") {
+	library("Spring Kafka", "4.0.1") {
 		considerSnapshots()
 		group("org.springframework.kafka") {
 			modules = [
@@ -2496,7 +2496,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-kafka/releases/tag/v{version}")
 		}
 	}
-	library("Spring LDAP", "4.0.1-SNAPSHOT") {
+	library("Spring LDAP", "4.0.1") {
 		considerSnapshots()
 		group("org.springframework.ldap") {
 			modules = [
@@ -2516,7 +2516,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-ldap/releases/tag/{version}")
 		}
 	}
-	library("Spring Pulsar", "2.0.1-SNAPSHOT") {
+	library("Spring Pulsar", "2.0.1") {
 		considerSnapshots()
 		group("org.springframework.pulsar") {
 			bom("spring-pulsar-bom")
@@ -2546,7 +2546,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-restdocs/releases/tag/v{version}")
 		}
 	}
-	library("Spring Security", "7.0.1-SNAPSHOT") {
+	library("Spring Security", "7.0.2") {
 		considerSnapshots()
 		group("org.springframework.security") {
 			bom("spring-security-bom")
@@ -2561,7 +2561,7 @@ bom {
 			releaseNotes("https://github.com/spring-projects/spring-security/releases/tag/{version}")
 		}
 	}
-	library("Spring Session", "4.0.1-SNAPSHOT") {
+	library("Spring Session", "4.0.1") {
 		considerSnapshots()
 		prohibit {
 			startsWith(["Apple-", "Bean-", "Corn-", "Dragonfruit-"])
@@ -2610,7 +2610,7 @@ bom {
 			releaseNotes("https://github.com/xerial/sqlite-jdbc/releases/tag/{version}")
 		}
 	}
-	library("Testcontainers", "2.0.2") {
+	library("Testcontainers", "2.0.3") {
 		group("org.testcontainers") {
 			bom("testcontainers-bom")
 		}

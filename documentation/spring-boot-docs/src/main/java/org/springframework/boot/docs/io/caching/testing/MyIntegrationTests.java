@@ -1,7 +1,7 @@
 /*
  * Copyright 2012-present the original author or authors.
  *
- * Licensed under the Apache License, Version 2.0 (the License);
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-plugins {
-	id "org.springframework.boot.starter"
-}
+package org.springframework.boot.docs.io.caching.testing;
 
-description = "Starter for using Kotlin Serialization"
+import org.springframework.boot.cache.test.autoconfigure.AutoConfigureCache;
+import org.springframework.boot.test.context.SpringBootTest;
 
-dependencies {
-	api(project(":starter:spring-boot-starter"))
+@SpringBootTest
+@AutoConfigureCache
+public class MyIntegrationTests {
 
-	api(project(":module:spring-boot-kotlinx-serialization-json"))
+	// Tests use a no-op cache manager
+
 }
