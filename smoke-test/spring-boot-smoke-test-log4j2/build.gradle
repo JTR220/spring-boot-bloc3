@@ -15,12 +15,20 @@
  */
 
 plugins {
-	id "org.springframework.boot.starter"
+	id "java"
 }
 
-description = "Starter for testing Kotlin Serialization"
+description = "Spring Boot Log4j2 smoke test"
 
 dependencies {
-	api(project(":starter:spring-boot-starter-kotlin-serialization-json"))
-	api(project(":starter:spring-boot-starter-test"))
+	modules {
+		module("org.springframework.boot:spring-boot-starter-logging") {
+			replacedBy("org.springframework.boot:spring-boot-starter-log4j2", "Use Log4j2 instead of Logback")
+		}
+	}
+
+	implementation(project(":starter:spring-boot-starter"))
+	implementation(project(":starter:spring-boot-starter-log4j2"))
+
+	testImplementation(project(":starter:spring-boot-starter-test"))
 }
