@@ -1,6 +1,6 @@
 plugins {
     id "base"
-    id "org.sonarqube" version "5.1.0.4882" // Version plus récente conseillée
+    id "org.sonarqube" version "5.1.0.4882"
     id "jacoco"
 }
 
@@ -14,7 +14,6 @@ allprojects {
     }
 }
 
-// Configuration Sonar globale
 sonar {
     properties {
         property "sonar.projectKey", "JTR220_spring-boot-bloc3"
@@ -24,24 +23,24 @@ sonar {
 }
 
 subprojects {
-    // On applique JaCoCo sur CHAQUE sous-projet car c'est là qu'est le code 
-    apply plugin: 'java' 
+    // On applique les plugins de base nécessaires à l'analyse
+    apply plugin: 'java'
     apply plugin: 'jacoco'
-    apply plugin: "org.springframework.boot.conventions"
 
     jacoco {
         toolVersion = "0.8.12"
     }
 
-    // Chaque sous-projet génère son propre rapport XML pour Sonar
     jacocoTestReport {
         reports {
-            xml.required = true
+            xml.required = true // Indispensable pour SonarCloud
         }
     }
 
-    // On s'assure que Sonar attend la fin des tests et du rapport
-    tasks.named('sonar').configure {
-        dependsOn tasks.named('jacocoTestReport')
+    // SOLUTION AU BUG : On ne configure la dépendance que si la tâche existe
+    plugins.withType(org.sonarqube.gradle.SonarQubePlugin) {
+        tasks.named('sonar').configure {
+            dependsOn tasks.named('jacocoTestReport')
+        }
     }
 }
