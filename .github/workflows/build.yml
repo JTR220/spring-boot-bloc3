@@ -3,7 +3,7 @@ name: SonarQube
 on:
   push:
     branches:
-      - main        # change en 'master' ou autre si ta branche par défaut est différente
+      - main  # Vérifie que ta branche s'appelle bien main (ou master)
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -38,12 +38,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Build and analyze
+      - name: Build, Test and Analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew build sonar --info \
+          ./gradlew clean test jacocoTestReport sonar --info \
             -x javadoc \
             -x antora \
             -x antoraNpmInstall \

@@ -37,9 +37,15 @@ sonar {
 
   }
 }
+jacoco {
+    toolVersion = "0.8.12" // Version stable
+}
 jacocoTestReport {
+    dependsOn test // S'assure que les tests tournent avant de générer le rapport
     reports {
-        xml.required = true 
+        xml.required = true // Crucial pour SonarCloud
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('reports/jacoco')
     }
 }
 subprojects {
