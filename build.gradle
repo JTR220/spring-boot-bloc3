@@ -17,6 +17,7 @@
 plugins {
 	id "base"
 	id "org.sonarqube" version "7.2.0.6526"
+	id 'jacoco'
 
 }
 
@@ -36,7 +37,11 @@ sonar {
 
   }
 }
-
+jacocoTestReport {
+    reports {
+        xml.required = true 
+    }
+}
 subprojects {
 	apply plugin: "org.springframework.boot.conventions"
 
