@@ -3,7 +3,7 @@ name: SonarQube
 on:
   push:
     branches:
-      - main  # Vérifie que ta branche s'appelle bien main (ou master)
+      - main        # change en 'master' ou autre si ta branche par défaut est différente
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -38,17 +38,16 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Build, Test and Analyze
+      - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew clean test jacocoTestReport sonar --info \
+          ./gradlew build sonar --info \
             -x javadoc \
             -x antora \
             -x antoraNpmInstall \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.organization=jtr220 \
             -Dsonar.projectKey=JTR220_spring-boot-bloc3 \
-            -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
+            -Dsonar.token=$SONAR_TOKEN
